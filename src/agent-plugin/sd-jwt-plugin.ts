@@ -91,8 +91,17 @@ export class SDJwtPlugin implements IAgentPlugin {
       context,
     );
     if (!doc || doc.length === 0) throw new Error('No key found for signing');
-    const key = doc.find((key) => key.meta.verificationMethod.id === issuer);
-    if (!key) throw new Error('No key found with the given id');
+    const key = doc.find((key) => {
+      let didIssuer = issuer.split('#')[0];
+
+      if (didIssuer.startsWith('did:jwk')) {
+        didIssuer += '#0';
+      }
+
+      return key.meta.verificationMethod.id === didIssuer;
+    });
+    if (!key)
+      throw new Error(`No key found with the given id: ${issuer || ''}`);
     let alg: string;
     //transform the key type to the alg
     switch (key.type) {
