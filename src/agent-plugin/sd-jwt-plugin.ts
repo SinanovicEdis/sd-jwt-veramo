@@ -68,11 +68,20 @@ export class SDJwtPlugin implements IAgentPlugin {
       hashAlg: 'SHA-256',
     });
 
-    const credential = await sdjwt.issue(
+    const credentialJwt = await sdjwt.issue(
       args.credentialPayload,
       args.disclosureFrame,
     );
-    return { credential };
+
+    const decodedCredential = await sdjwt.decode(credentialJwt);
+
+    const preparedCredential = {
+      ...decodedCredential.jwt?.payload,
+      signature: decodedCredential.jwt?.signature,
+      encoded: decodedCredential.jwt?.encodeJwt(),
+    };
+
+    return { credential: preparedCredential };
   }
 
   /**

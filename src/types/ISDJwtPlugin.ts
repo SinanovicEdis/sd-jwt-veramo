@@ -1,4 +1,4 @@
-import type { KBOptions, PresentationFrame } from '@sd-jwt/types';
+import type { JwtPayload, KBOptions, PresentationFrame } from '@sd-jwt/types';
 import type { SdJwtVcPayload } from '@sd-jwt/sd-jwt-vc';
 import type {
   IAgentContext,
@@ -99,7 +99,7 @@ export interface ICreateSdJwtVcResult {
   /**
    * the encoded sd-jwt credential
    */
-  credential: string;
+  credential: string | JwtPayload;
 }
 
 /**

@@ -221,7 +221,8 @@ describe('Agent plugin', () => {
       disclosureFrame: disclosureFrame,
     });
     const verified = await agent.verifySdJwtVc({
-      credential: credential.credential,
+      credential:
+        typeof credential.credential === 'string' ? credential.credential : '',
     });
   }, 5000);
 
@@ -243,7 +244,8 @@ describe('Agent plugin', () => {
     };
 
     const presentation = await agent.createSdJwtVcPresentation({
-      presentation: credential.credential,
+      presentation:
+        typeof credential.credential === 'string' ? credential.credential : '',
       presentationKeys,
       kb: {
         payload: {
@@ -289,7 +291,8 @@ describe('Agent plugin', () => {
     };
 
     const presentation = await agent.createSdJwtVcPresentation({
-      presentation: credential.credential,
+      presentation:
+        typeof credential.credential === 'string' ? credential.credential : '',
       presentationKeys,
       kb: {
         payload: {
@@ -319,7 +322,8 @@ describe('Agent plugin', () => {
       disclosureFrame,
     });
     const presentation = agent.createSdJwtVcPresentation({
-      presentation: credential.credential,
+      presentation:
+        typeof credential.credential === 'string' ? credential.credential : '',
       presentationKeys: ['given_name'],
       kb: {
         payload: {
@@ -359,7 +363,8 @@ describe('Agent plugin', () => {
     };
 
     const presentation = await agent.createSdJwtVcPresentation({
-      presentation: credential.credential,
+      presentation:
+        typeof credential.credential === 'string' ? credential.credential : '',
       presentationKeys,
       kb: {
         payload: {
@@ -399,7 +404,8 @@ describe('Agent plugin', () => {
     };
 
     const presentation = await agent.createSdJwtVcPresentation({
-      presentation: credential.credential,
+      presentation:
+        typeof credential.credential === 'string' ? credential.credential : '',
       presentationKeys,
       kb: {
         payload: {
