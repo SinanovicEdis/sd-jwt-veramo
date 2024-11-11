@@ -79,6 +79,7 @@ export class SDJwtPlugin implements IAgentPlugin {
       ...decodedCredential.jwt?.payload,
       signature: decodedCredential.jwt?.signature,
       encoded: decodedCredential.jwt?.encodeJwt(),
+      disclosures: decodedCredential.disclosures,
     };
 
     return { credential: preparedCredential };
