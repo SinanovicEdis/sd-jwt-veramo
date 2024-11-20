@@ -78,7 +78,7 @@ export class SDJwtPlugin implements IAgentPlugin {
     const preparedCredential = {
       ...decodedCredential.jwt?.payload,
       signature: decodedCredential.jwt?.signature,
-      encoded: decodedCredential.jwt?.encodeJwt(),
+      encoded: credentialJwt,
       disclosures: decodedCredential.disclosures,
     };
 
@@ -167,6 +167,10 @@ export class SDJwtPlugin implements IAgentPlugin {
       kbSigner: signer,
       kbSignAlg: alg,
     });
+
+    console.log('-----> presentation (encoded vc ->> ', args.presentation);
+    console.log('-----> presentationKeys', args.presentationKeys);
+
     const credential = await sdjwt.present(
       args.presentation,
       args.presentationKeys,
